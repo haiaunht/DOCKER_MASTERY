@@ -1,0 +1,40 @@
+- An image is the application we want to run
+- A container is an instance of that image running as a process
+- I can have many containers running off the same image
+- below image are example using Nginx web server
+
+>> docker container run --publish 80:80 nginx 
+-> this is run on the FOREGROUND
+
+Now open localhost -> see welcome from nginx server
+
+Behind the hood:
+- download image 'nginz' from Docker hub
+- started a new container from that image
+- opened port 80 on the host IP
+- routes that traffic to the container IP, port 80
+
+>> docker container run --publish 80:80 --detach nginx 
+-> this is run on the BACKGROUND
+-> got a unique image id
+
+
+>> docker container ls
+-> list all running containers
+
+>> docker container ls -a 
+
+>> docker container stop <image's id>
+-> stop that image
+
+>> docker container run --publish 80:80 --detach --name haiautest nginx
+-> image has the haiautest name specifically
+
+>> docker container logs haiautest
+-> log out the container run in background
+
+>> docker container rm <image1> <image2> <>... -> remove list of images
+OR
+>> docker container rm -f <imageId> -> force remove
+OR
+>> docker rm $(docker ps --filter status=exited -q)  --> remove all exited images
