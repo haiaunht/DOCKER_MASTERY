@@ -1,0 +1,24 @@
+>> docker container run -it (start new container interactively)
+>> docker container exec -it (run additional command in existing container)
+
+
+>> docker container run -it --name ubuntu ubuntu
+>> root@id:/# apt-get update
+>> root@id:/# apt-get install -y curl
+
+Can do everything as ubuntu for real
+
+
+Create a SHELL inside container
+>> docker container exec -it mysql bash
+>> ..../# ps aux
+>> ..../# exit
+
+
+DOWNLOAD ALPINE
+>> docker pull alpine
+Alpine is so small so cannot run bash in it -> instead use sh
+
+>> docker container run -it alpine sh
+>> # exit
+
