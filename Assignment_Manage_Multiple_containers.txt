@@ -1,0 +1,43 @@
+- run a nginx, a mysql, and a https (apache) server
+- run all of them --detach (or -d) name them with --name
+- nginx should listen on 80:80, httpd on 8080:80, mysql on 3306:3306
+- when running mysql, use the --env option (or -e) to pass in MYSQL_RANDOM_ROOT_PASSWORD=yes
+- use docker container logs on mysql to find the random password it created on startup
+- clean it all up with docker container	stop and docker container	rm (both can accept multiple names or ID's)
+- use docker container ls to ensure everything is correct before and after cleanup
+
+
+
+
+
+
+>> Docker container run -d -p 3306:3306 --name db -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql ==> won't work cause M1 CHANGED TO
+>> docker container run --platform linux/x86_64 -d -p 3306:3306 --name db -e MYSQL_RANDOM_ROOT_
+PASSWORD=yes mysql
+
+
+>> docker container logs db -> see GENERATED ROOT PASSWORD (use that is needed)
+
+
+>> docker container run -d --name webserver -p 8080:80 httpd
+	(OR docker container run -d -p 8080:80 --name webserver http)
+
+>> docker container run -d -p 80:80 --name proxy nginx
+
+
+>> docker ps == docker container ls ===> will see web server and db running now
+
+NOW if I 
+
+>> curl localhost -> get back nginx
+>> curl localhost:8080 -> get back <html><body><h1>It works!</h1></body></html>
+
+
+
+CLEAN UP
+STOP all contaners
+>> docker container stop <proxyID> <webserverID> <dbID>
+>> docker container ls -a -> list all exited containers
+
+DELETE all
+>> docker container rm <proxyID> <webserverID> <dbID>
