@@ -1,0 +1,22 @@
+Create and run couple containers 
+
+>> docker container run -d --name nginx nginx
+>> docker container run -d --name mysql -e MYSQL_RANDOM_ROOT_PASSWORD=yes mysql
+>> docker container ls
+
+
+DISPLAYING the running processes of a container
+>> docker container top mysql
+>> docker container top nginx
+
+
+Display detailed information on one or more containers
+>> docker container inspect mysql
+
+
+Display a live stream of container(s) resource usage statistics
+>> docker container stats
+>> CTRL + C to get out
+
+
+
