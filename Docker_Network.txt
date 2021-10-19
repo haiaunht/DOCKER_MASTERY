@@ -1,0 +1,43 @@
+- each container connected to a private virtual network "bridge"
+- each virtual network routes through NAT firewall on host IP
+- all containers on a virtual net work can talk to each other without -p
+- best practice is to create a new Virtual network for each app:
+	+ network "my_web_app" for mysql and php/apache container
+ 	+ network "my_api" for mongo and nodes containers
+
+-> And this brings up a good saying that Docker likes to use...that is batteries included but removable.
+
+- make new virtual network
+- attach containers to more than one virtual network (or more)
+- skip virtual networks and use host IP (--net=host)
+- Docker network drivers
+....much more
+
+
+Example
+>> docker container run -d -p 80:80 --name webhost nginx
+>> docker container inspect --format '{{ .NetworkSettings.IPAddress }}' webhost
+  -> show ip address such as 172.17.0.2
+
+>> docker network ls -> show networks
+>> docker network inspect -> inspect a network
+>> docker network create --driver -> create a network
+>> docker network connect -> attach a network to container
+>> docker network disconnect -> detach a network from container
+
+Example
+>> docker network ls
+>> docker network inspect bridge
+
+CREATE MY OWN NETWORK
+>> docker network create my_app_net -> create a bridge Driver
+
+Run new container in my_app_net
+>> docker container run -d --name new_nginx --network my_app_net nginx
+
+>> docker network connect <my_app_netID> <webhostId> 
+>> docker container inspect <webhostId> -> show 2 network which are bridge and my_app_net
+
+
+>> docker network disconnect <> <>
+
