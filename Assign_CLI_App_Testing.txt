@@ -1,0 +1,19 @@
+1- use different linux distribution containers to check curl cli tool version
+2- use 2 different terminal windows to start bash in both cents:7 and ubuntu:14.04, using -it 
+3- learn the docker container -rm option so you can save cleanup
+4- ensure curl is installed and on latest version for that distribution
+	+ ubuntu : apt-get update && apt-get install curl
+	+ centos: yum update curl
+5- check curl --version
+
+
+==================
+>> docker container run --rm -it centos:7 bash (-> -rm auto delete if exits)
+
+>> cmd + shift + d to open another window
+>> in this window 
+>> docker container run --rm -it ubuntu:14.04 bash
+>> in bash
+>> apt-get update && apt-get install curl
+>> in both windows check
+>> curl --version
