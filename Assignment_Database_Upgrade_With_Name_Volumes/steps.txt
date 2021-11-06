@@ -1,0 +1,10 @@
+>> docker container run -d --name psql -v psql:/var/lib/postgresql/data postgres:9.6.1
+(this will run container in the background (-d) and name it psql with the path (/var/lib/postgresql/data)
+>> docker container logs -f psql 
+>> ctrl+c
+
+>> docker container stop <containerID>
+
+>> docker container run -d --name psql2 -v psql:/var/lib/postgresql/data postgres:9.6.2
+
+>> docker container ps -a --> will see two container  with name psql2 and psql
